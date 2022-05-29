@@ -1,0 +1,8 @@
+# Project exclude paths
+/RPC-client/target/
+/RPC-codec/target/
+/RPC-common/target/
+/RPC-Example/target/
+/RPC-proto/target/
+/RPC-server/target/
+/RPC-transport/target/
