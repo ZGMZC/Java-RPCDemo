@@ -36,7 +36,6 @@ public class HTTPTransportClient implements TransportClient {
             }else{
                 return urlConnection.getErrorStream();
             }
-
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }

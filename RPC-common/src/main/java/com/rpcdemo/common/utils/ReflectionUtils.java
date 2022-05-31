@@ -12,7 +12,7 @@ import java.util.List;
 public class ReflectionUtils {
     /**
      * 根据class创建对象
-     * @param clazz  带创建对象的类
+     * @param clazz  代创建对象的类
      * @param <T> 对象类型
      * @return 创建好的对象
      */

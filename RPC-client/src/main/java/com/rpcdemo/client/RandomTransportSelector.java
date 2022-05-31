@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * 随机选择一个client
+ */
 @Slf4j
 public class RandomTransportSelector implements TransportSelector{
     /**
