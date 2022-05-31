@@ -25,7 +25,7 @@ public class ReflectionUtils {
     }
 
     /**
-     * 获取某个class的共有方法
+     * 获取某个class的公有方法
      * @param clazz
      * @return
      */
