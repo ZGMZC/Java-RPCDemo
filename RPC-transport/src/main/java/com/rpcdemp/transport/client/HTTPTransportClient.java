@@ -10,25 +10,31 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
- *
+ * 创建连接
+ * 发送数据并等待响应
+ * 关闭连接
  */
 public class HTTPTransportClient implements TransportClient {
     private String url;
-
+    private HttpURLConnection urlConnection=null;
     @Override
     public void connect(Peer peer) {
         this.url= "http://" +peer.getHost()+":"+peer.getPort();
-    }
-
-    @Override
-    public InputStream write(InputStream data) {
         try {
-            HttpURLConnection urlConnection =(HttpURLConnection) new URL(url).openConnection();
+            urlConnection =(HttpURLConnection) new URL(url).openConnection();
             urlConnection.setDoInput(true);
             urlConnection.setDoOutput(true);
             urlConnection.setUseCaches(false);
             urlConnection.setRequestMethod("POST");
             urlConnection.connect();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public InputStream write(InputStream data) {
+        try {
             IOUtils.copy(data,urlConnection.getOutputStream());
             int resultCode=urlConnection.getResponseCode();
             if(resultCode==HttpURLConnection.HTTP_OK){
@@ -39,11 +45,9 @@ public class HTTPTransportClient implements TransportClient {
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
-
     }
-
     @Override
     public void close() {
-
+        urlConnection.disconnect();
     }
 }

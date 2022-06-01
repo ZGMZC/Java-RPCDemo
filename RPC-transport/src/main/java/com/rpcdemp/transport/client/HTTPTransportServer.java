@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
+/**
+ * 启动，监听端口
+ * 接受请求
+ * 关闭监听
+ */
 @Slf4j
 public class HTTPTransportServer implements TransportServer{
     private RequestHandler handler;
@@ -60,6 +64,7 @@ public class HTTPTransportServer implements TransportServer{
             if(handler !=null){
                 handler.onRequest(inputStream,outputStream);
             }
+            outputStream.flush();
         }
     }
 }
